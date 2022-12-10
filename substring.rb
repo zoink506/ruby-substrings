@@ -13,16 +13,13 @@ def substrings(input_string, dictionary)
   # Compare dictionary string to the input string
   # If the input string contains the dictionary string, add it to the hash
 
-  string_array = input_string.split(" ")
   output_hash = Hash.new(0)
+  lower_input = input_string.downcase 
 
-  string_array.each do |input_word|
-    dictionary.each do |dictionary_word|
-      if input_word.include? dictionary_word
-        output_hash[dictionary_word] += 1
-      end 
-    end 
-  end 
+  dictionary.each do |word|
+    found_word = lower_input.scan(word)
+    output_hash[found_word[0]] += found_word.length if found_word[0] != nil
+  end
 
   p output_hash
 end 
